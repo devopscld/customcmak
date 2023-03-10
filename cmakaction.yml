@@ -11,23 +11,24 @@ inputs:
     required: false
     default: '-DCMAKE_C_COMPILER=/usr/bin/gcc-10 -DCMAKE_CXX_COMPILER=/usr/bin/g++-10'
   
-outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-number }}
+# outputs:
+#   random-number:
+#     description: "Random number"
+#     value: ${{ steps.random-number-generator.outputs.random-number }}
 runs:
   using: "composite"
   steps:
     - name: Create Work Dir
       run: mkdir build
+      shell: bash
     - working-directory: ./build
     - run: echo Hello ${{ inputs.who-to-greet }}. 
            cmake .. ${{ inputs.cmake_extra_args }} -DCMAKE_BUILD_TYPE=${{ inputs.cmake_build_type }}
       shell: bash
-    - id: random-number-generator
-      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
-      shell: bash
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash
-    - run: goodbye.sh
-      shell: bash
+#     - id: random-number-generator
+#       run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+#       shell: bash
+#     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+#       shell: bash
+#     - run: goodbye.sh
+#       shell: bash
