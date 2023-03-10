@@ -25,6 +25,9 @@ runs:
     - run: echo Hello ${{ inputs.who-to-greet }}. 
            cmake .. ${{ inputs.cmake_extra_args }} -DCMAKE_BUILD_TYPE=${{ inputs.cmake_build_type }}
       shell: bash
+    - name: Build
+      working-directory: ./build
+      run: cmake --build . -j --config ${{ inputs.cmake_build_type }}
 #     - id: random-number-generator
 #       run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
 #       shell: bash
