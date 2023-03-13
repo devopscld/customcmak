@@ -7,7 +7,7 @@ inputs:
     default: 'Release'
  
   cmake_extra_args:
-    description: 'cpp compiler details'
+    description: 'compiler details'
     required: false
     default: '-DCMAKE_C_COMPILER=/usr/bin/gcc-10 -DCMAKE_CXX_COMPILER=/usr/bin/g++-10'
   
